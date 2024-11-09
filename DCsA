@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DömörövöCsevegőApp</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { width: 400px; background: white; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); padding: 20px; }
+        h2 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #666; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        .button:hover { background-color: #0056b3; }
+        .social-buttons { display: flex; justify-content: space-between; margin-top: 10px; }
+        .social-button { width: 48%; padding: 10px; border: none; cursor: pointer; font-size: 16px; color: white; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+        .google { background-color: #db4437; }
+        .facebook { background-color: #3b5998; }
+        .apple { background-color: #333; }
+        .chat-container { display: none; margin-top: 20px; }
+        .chat-box { border: 1px solid #ddd; padding: 15px; height: 250px; overflow-y: auto; background: #f9f9f9; border-radius: 5px; }
+        .chat-message { padding: 10px; margin-bottom: 5px; background: #e9ecef; border-radius: 5px; }
+        .form-group textarea { width: 100%; height: 50px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bejelentkezés</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUsername">Felhasználónév</label>
+                <input type="text" id="loginUsername" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Jelszó</label>
+                <input type="password" id="loginPassword" required>
+            </div>
+            <button type="button" class="button" onclick="login()">Bejelentkezés</button>
+        </form>
+        
+        <div class="social-buttons">
+            <button class="social-button google" onclick="loginWithGoogle()">Google</button>
+            <button class="social-button facebook" onclick="loginWithFacebook()">Facebook</button>
+            <button class="social-button apple" onclick="loginWithApple()">Apple</button>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <h2>Chat</h2>
+            <div class="chat-box" id="chatBox"></div>
+            <div class="form-group">
+                <textarea id="messageInput" placeholder="Írj egy üzenetet..."></textarea>
+            </div>
+            <button type="button" class="button" onclick="sendMessage()">Küldés</button>
+        </div>
+    </div>
+
+    <script>
+        let users = [];
+        let currentUser = null;
+
+        function login() {
+            const username = document.getElementById("loginUsername").value;
+            const password = document.getElementById("loginPassword").value;
+            currentUser = { username };
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("chatContainer").style.display = "block";
+            alert("Sikeres bejelentkezés: " + username);
+        }
+
+        function loginWithGoogle() {
+            alert("Google bejelentkezés funkció itt implementálható.");
+            // Google login SDK-val
+        }
+
+        function loginWithFacebook() {
+            alert("Facebook bejelentkezés funkció itt implementálható.");
+            // Facebook login SDK-val
+        }
+
+        function loginWithApple() {
+            alert("Apple bejelentkezés funkció itt implementálható.");
+            // Apple login SDK-val
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                const chatBox = document.getElementById("chatBox");
+                const messageDiv = document.createElement("div");
+                messageDiv.classList.add("chat-message");
+                messageDiv.innerText = currentUser.username + ": " + messageText;
+                chatBox.appendChild(messageDiv);
+                messageInput.value = "";
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>￼Enter
